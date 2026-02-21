@@ -1,0 +1,363 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto";
+  background: #8cc461;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 900px;
+  position: relative;
+  padding: 1rem;
+}
+
+/* game title and score display */
+
+.header {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  font-size: 40px;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.scoreboard {
+  display: flex;
+  gap: 15px;
+}
+
+.score-box {
+  width: 150px;
+  height: 150px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-box p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.score-box h1 {
+  font-size: 60px;
+
+  font-weight: 700;
+  color: #222;
+  line-height: 1;
+}
+
+/* game area containing choices and connectors */
+
+.game-area {
+  margin-top: 80px;
+  position: relative;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* triangle connectors between choices */
+
+.triangle-line {
+  position: absolute;
+  width: 240px;
+  height: 15px;
+  background: #2e4f2e;
+  transform-origin: center;
+  border-radius: 10px;
+}
+
+.line-1 {
+  top: 88px;
+  left: 56%;
+  transform: translateX(-50%);
+}
+
+.line-2 {
+  top: 180px;
+  left: calc(50% - 150px);
+  transform: rotate(60deg);
+}
+
+.line-3 {
+  top: 200px;
+  left: calc(50% + 24px);
+  transform: rotate(-60deg);
+}
+
+/* player selectable options */
+
+.choice {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 40px;
+  border: 10px solid;
+  background: white;
+  position: absolute;
+  cursor: pointer;
+}
+
+.rock {
+  border-color: #0074b6;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-140px);
+}
+
+.paper {
+  border-color: #ffa943;
+  top: 40px;
+  left: 50%;
+  transform: translateX(140px);
+}
+
+.scissors {
+  border-color: #bd00ff;
+  bottom: 44px;
+  left: 57%;
+  transform: translateX(-50%);
+}
+
+.rules-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 10px 20px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  letter-spacing: 3px;
+
+}
+
+/* Rules modal */
+
+.rules-modal {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  width: 300px;
+  background: #004429;
+  padding: 20px;
+  border-radius: 10px;
+  border: 4px solid white;
+  z-index: 1001;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.rules-modal:not(.hidden) {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.rules-content {
+  position: relative;
+  color: white;
+}
+
+.rules-content h2 {
+  margin-bottom: 15px;
+}
+
+.rules-content ul {
+  padding-left: 15px;
+}
+
+.rules-content li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  list-style-type: none;
+}
+
+.rules-content li::before {
+  content: "■";
+  color: yellow;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.close-btn {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: red;
+  color: white;
+  border: 4px solid white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* result layout */
+
+.result-screen {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.result-picks {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pick-box {
+  text-align: center;
+  color: white;
+}
+
+.pick-box p {
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.result-choice {
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  border: 12px solid;
+  box-shadow:
+    rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.result-text h1,
+.result-text h3 {
+  color: white;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+#play-again {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  letter-spacing: 2px;
+}
+
+/* celebration screen */
+
+.hurray-screen {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.hurray-content h1 {
+  color: white;
+  font-size: 100px;
+}
+
+.hurray-content p {
+  color: white;
+  font-size: 40px;
+  margin: 10px 0 20px;
+}
+
+#play-again-hurray {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  letter-spacing: 2px;
+}
+
+/* winner pulse animation */
+
+.winner-glow {
+  position: relative;
+  animation: pulseGlow 1.6s infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(46, 154, 46, 0.6),
+      0 0 0 0 rgba(46, 154, 46, 0.4),
+      0 0 0 0 rgba(46, 154, 46, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 25px rgba(46, 154, 46, 0.3),
+      0 0 0 50px rgba(46, 154, 46, 0.2),
+      0 0 0 75px rgba(46, 154, 46, 0.1);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 40px rgba(46, 154, 46, 0),
+      0 0 0 70px rgba(46, 154, 46, 0),
+      0 0 0 100px rgba(46, 154, 46, 0);
+  }
+}
+
+/* hurray animation */
+
+.trophy {
+  margin-bottom: 40px;
+}
+
+.hurray-content {
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
