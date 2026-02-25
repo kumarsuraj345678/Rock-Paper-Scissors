@@ -39,6 +39,16 @@ body {
   font-weight: bold;
 }
 
+.win-highlight {
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  color: white;
+  -webkit-text-stroke: 0.5px black;
+}
+
 .scoreboard {
   display: flex;
   gap: 15px;
@@ -66,7 +76,6 @@ body {
 
 .score-box h1 {
   font-size: 60px;
-
   font-weight: 700;
   color: #222;
   line-height: 1;
@@ -115,14 +124,20 @@ body {
 /* player selectable options */
 
 .choice {
-  width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
   font-size: 40px;
-  border: 10px solid;
+  border: 12px solid;
   background: white;
   position: absolute;
   cursor: pointer;
+}
+
+.choice-img {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
 }
 
 .rock {
@@ -132,33 +147,38 @@ body {
   transform: translateX(-140px);
 }
 
-.paper {
-  border-color: #ffa943;
+.scissors {
+  border-color: #bd00ff;
   top: 40px;
   left: 50%;
   transform: translateX(140px);
 }
 
-.scissors {
-  border-color: #bd00ff;
+.paper {
+  border-color: #ffa943;
   bottom: 44px;
   left: 57%;
   transform: translateX(-50%);
 }
 
-.rules-btn {
+.bottom-actions {
   position: fixed;
   bottom: 30px;
   right: 30px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.rules-btn,
+.next-btn {
   padding: 10px 20px;
   border: 2px solid white;
   background: transparent;
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  z-index: 1000;
   letter-spacing: 3px;
-
 }
 
 /* Rules modal */
