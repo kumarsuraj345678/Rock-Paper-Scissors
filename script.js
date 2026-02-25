@@ -18,6 +18,10 @@ const playAgainHurray = document.getElementById("play-again-hurray");
 const userScoreUI = document.getElementById("user-score");
 const pcScoreUI = document.getElementById("pc-score");
 
+const titleRock = document.getElementById("title-rock");
+const titlePaper = document.getElementById("title-paper");
+const titleScissors = document.getElementById("title-scissors");
+const nextBtn = document.getElementById("next-btn");
 
 // localStorage
 let userScore = localStorage.getItem("userScore")
@@ -31,7 +35,6 @@ let pcScore = localStorage.getItem("pcScore")
 userScoreUI.innerText = userScore;
 pcScoreUI.innerText = pcScore;
 
-
 // modal toggle
 rulesBtn.addEventListener("click", () => {
   rulesModal.classList.remove("hidden");
@@ -41,24 +44,21 @@ closeRules.addEventListener("click", () => {
   rulesModal.classList.add("hidden");
 });
 
-
 // game state
 let userChoice = null;
 let pcChoice = null;
 let result = null;
 let hurrayTimeout;
 
-
 // player selection
 const choices = document.querySelectorAll(".choice");
 
-choices.forEach(choice => {
+choices.forEach((choice) => {
   choice.addEventListener("click", () => {
     userChoice = choice.dataset.choice;
     startGame();
   });
 });
-
 
 // generate random PC move
 function generatePCChoice() {
@@ -80,7 +80,6 @@ function decideWinner() {
   }
 }
 
-
 // update score and persist
 function updateScore() {
   if (result === "win") {
@@ -95,22 +94,45 @@ function updateScore() {
   pcScoreUI.innerText = pcScore;
 }
 
+function highlightWinnerTitle(choice) {
+  titleRock.classList.remove("win-highlight");
+  titlePaper.classList.remove("win-highlight");
+  titleScissors.classList.remove("win-highlight");
 
-function getSymbol(choice) {
-  if (choice === "rock") return "✊";
-  if (choice === "paper") return "✋";
-  if (choice === "scissors") return "✌";
+  if (choice === "rock") {
+    titleRock.classList.add("win-highlight");
+  }
+  if (choice === "paper") {
+    titlePaper.classList.add("win-highlight");
+  }
+  if (choice === "scissors") {
+    titleScissors.classList.add("win-highlight");
+  }
 }
 
+function getSymbol(choice) {
+  if (choice === "rock") {
+    return `<img src="./assets/rock.png" alt="rock" class="choice-img" />`;
+  }
+  if (choice === "paper") {
+    return `<img src="./assets/paper.png" alt="paper" class="choice-img" />`;
+  }
+  if (choice === "scissors") {
+    return `<img src="./assets/scissors.png" alt="scissors" class="choice-img" />`;
+  }
+}
 
 // reset round state and UI
 function resetRound() {
-  clearTimeout(hurrayTimeout);
-
   header.classList.remove("hidden");
   gameArea.classList.remove("hidden");
   resultScreen.classList.add("hidden");
   hurrayScreen.classList.add("hidden");
+  nextBtn.classList.add("hidden");
+
+  titleRock.classList.remove("win-highlight");
+  titlePaper.classList.remove("win-highlight");
+  titleScissors.classList.remove("win-highlight");
 
   userPickUI.classList.remove("winner-glow");
   pcPickUI.classList.remove("winner-glow");
@@ -128,30 +150,23 @@ function resetRound() {
 
 playAgainBtn.addEventListener("click", resetRound);
 playAgainHurray.addEventListener("click", resetRound);
-
+nextBtn.addEventListener("click", showHurrayScreen);
 
 // celebration screen after win
 function showHurrayScreen() {
   resultScreen.classList.add("hidden");
   header.classList.add("hidden");
   hurrayScreen.classList.remove("hidden");
+  nextBtn.classList.add("hidden");
 }
-
 
 // game controller
 function startGame() {
-  clearTimeout(hurrayTimeout);
-
   generatePCChoice();
   decideWinner();
   updateScore();
   showResultScreen();
-
-  if (result === "win") {
-    hurrayTimeout = setTimeout(showHurrayScreen, 1500);
-  }
 }
-
 
 // colored border for result picks
 function getRingColor(choice) {
@@ -159,7 +174,6 @@ function getRingColor(choice) {
   if (choice === "paper") return "#FFA943";
   if (choice === "scissors") return "#BD00FF";
 }
-
 
 // result screen
 function showResultScreen() {
@@ -178,12 +192,14 @@ function showResultScreen() {
   if (result === "win") {
     resultMessage.innerText = "YOU WIN";
     userPickUI.classList.add("winner-glow");
-  } 
-  else if (result === "lose") {
+    nextBtn.classList.remove("hidden");
+    highlightWinnerTitle(userChoice);
+  } else if (result === "lose") {
     resultMessage.innerText = "YOU LOST";
     pcPickUI.classList.add("winner-glow");
-  } 
-  else {
+    nextBtn.classList.add("hidden");
+  } else {
     resultMessage.innerText = "TIE UP";
+    nextBtn.classList.add("hidden");
   }
 }

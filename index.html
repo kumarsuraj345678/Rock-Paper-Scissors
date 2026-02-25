@@ -1,121 +1,20 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <!-- Top section: Game title + live scores -->
-      <div class="header">
-        <div class="title">
-          ROCK <br />
-          PAPER <br />
-          SCISSORS
-        </div>
+JavaScript Major Module Test | Stone Paper Scissor | Problem Statement:
+Your challenge is to build out this Rock, Paper, Scissors game and get it looking as close to the design as possible.
+Features List:
+1.	The game is designed for two players, one is you as a player and the other opponent is your computer (YOUR PC).
+2.	There will simultaneous turns given to you and your computer, as soon as you choose one option for yourself ie. stone/paper/scissor your opponent (the PC) will also strike at the same time.
+3.	Show the respective scores on the screen for computer and human
+4.	Different messages are displayed on the screen as per the win of the participants.
+5.	There is a rules section at the bottom right, so as soon as you click on it, a pop up will open and you need to write the basic rules of the game, and there is a close button to close the pop up.
+6.	You need to store the scores in any browser storage you find relevant for the task, and make sure that the scores are not lost on reloading the page.
+7.	You also need to show celebration animation if the human wins against the computer.
+8.	You can use your own animations. 
+FAQ 
+Do the scores reset after clicking play again on ANY PAGE?
+=> NO
+Is the Hurray Page visible only after a certain score, or after every win by the user?
+	=> After EVERY win by the USER
+Is there any Maximum score for deciding a WIN?
+	=> NO, WIN or LOSE is decided on every game level, and the score keeps on incrementing for either the PC or the User.
 
-        <div class="scoreboard">
-          <div class="score-box">
-            <p>
-              COMPUTER <br />
-              SCORE
-            </p>
-            <h1 id="pc-score">0</h1>
-          </div>
-
-          <div class="score-box">
-            <p>
-              YOUR <br />
-              SCORE
-            </p>
-            <h1 id="user-score">0</h1>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main gameplay area -->
-      <div class="game-area">
-        <!-- Triangle connectors between choices -->
-        <div class="triangle-line line-1"></div>
-        <div class="triangle-line line-2"></div>
-        <div class="triangle-line line-3"></div>
-
-        <!-- Player selectable options -->
-        <button class="choice rock" data-choice="rock">✊</button>
-        <button class="choice paper" data-choice="paper">✋</button>
-        <button class="choice scissors" data-choice="scissors">✌</button>
-      </div>
-
-      <!-- Round result display -->
-      <div class="result-screen hidden" id="result-screen">
-        <div class="result-picks">
-          <div class="pick-box">
-            <p>YOU PICKED</p>
-            <div class="result-choice" id="user-pick"></div>
-          </div>
-
-          <div class="result-text">
-            <div id="result-message-box">
-              <h1 id="result-message">YOU WIN</h1>
-              <h3>AGAINST PC</h3>
-            </div>
-            <button id="play-again">PLAY AGAIN</button>
-          </div>
-
-          <div class="pick-box">
-            <p>PC PICKED</p>
-            <div class="result-choice" id="pc-pick"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Celebration screen shown when player wins -->
-      <div class="hurray-screen hidden" id="hurray-screen">
-        <div class="hurray-content">
-          <div class="trophy">
-            <img src="./assets/Group 6.svg" alt="Winner Trophy" />
-          </div>
-
-          <h1>HURRAY!!</h1>
-          <p>YOU WON THE GAME</p>
-
-          <button id="play-again-hurray">PLAY AGAIN</button>
-        </div>
-      </div>
-
-      <!-- Persistent rules access -->
-      <button class="rules-btn">RULES</button>
-
-      <!-- Game rules modal -->
-      <div class="rules-modal hidden" id="rules-modal">
-        <div class="rules-content">
-          <button class="close-btn" id="close-rules">X</button>
-
-          <h2>Game Rules</h2>
-
-          <ul>
-            <li>
-              Rock beats scissors, scissors beat paper, and paper beats rock.
-            </li>
-            <li>
-              Agree ahead of time whether you'll count off "rock, paper,
-              scissors, shoot" or just "rock, paper,scissors."
-            </li>
-            <li>
-              Use rock,paper,scissors to settle minor decisons or simply play
-              to pass the time.
-            </li>
-            <li>
-              If both players lay down the same hand, each player lays down
-              another hand
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <script src="script.js"></script>
-  </body>
-</html>
+NOTE: For your turn in the game, you will have to choose the option manually by clicking on one of the options, but for your computer it will be decided by the logic you write which will be randomly decided.
